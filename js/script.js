@@ -19,31 +19,64 @@ createApp({
             emails: [],
 
             // utilizzo una variabile booleana che mi indicherà quando tutte le mail sono state caricate
-            emailsLoaded: false,           
+            emailsLoaded: false,
+            
+            numberEmails: 0,
+            userChoice: false, 
 
         }
     },
 
     mounted() {
 
-        for(let i = 0; i < 10; i++) {
-            axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((result) => {
+        // if(this.userChoice) {
+        //     for(let i = 0; i < this.numberEmails; i++) {
+        //         axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((result) => {
 
-                // salvo nella variabile la mail presa dall'api
-                this.email = result.data.response;
+        //             // salvo nella variabile la mail presa dall'api
+        //             this.email = result.data.response;
 
-                // la aggiungo al mio array di email
-                this.emails.push(this.email);
+        //             // la aggiungo al mio array di email
+        //             this.emails.push(this.email);
 
-                if(i >= 9) {
-                    this.emailsLoaded = true;
+        //             if(i >= this.numberEmails - 1) {
+        //                 this.emailsLoaded = true;
+        //             }
+        //         });
+        //     }
+        // }
+
+    },
+
+    methods: {
+
+        number() {
+
+            this.emails = [];
+
+            if(this.numberEmails > 0) {
+
+                for(let i = 0; i < this.numberEmails; i++) {
+                    axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((result) => {
+    
+                        // salvo nella variabile la mail presa dall'api
+                        this.email = result.data.response;
+    
+                        // la aggiungo al mio array di email
+                        this.emails.push(this.email);
+    
+                        if(i >= this.numberEmails - 1) {
+                            this.emailsLoaded = true;
+                        }
+                    });
                 }
-            });
+    
+            }
+            
         }
             
 
-
-    },
+    }
 
 
 
