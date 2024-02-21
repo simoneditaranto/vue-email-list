@@ -26,12 +26,22 @@
 
     <div id="app" class="container py-5">
 
-        <h1>Generatore casuale di email</h1>
+        <h1>Generatore di indirizzi mail tramite API</h1>
 
         <div id="emails">
 
             <div class="mail">
-                {{ email }}
+                
+                <ul>
+
+                    <li v-for="currentEmail in emails">
+
+                        {{ currentEmail }}
+                        
+                    </li>
+
+                </ul>
+
             </div>
 
         </div>

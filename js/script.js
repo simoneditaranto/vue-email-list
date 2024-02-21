@@ -12,17 +12,29 @@ createApp({
             // memorizzo in una variabile il mio indirizzo mail
             email: '',
 
+            // creo un array, inizialmente vuoto dove andrò a memorizzare tutti i miei indirizzi
+            emails: [],
+
         }
     },
 
     mounted() {
 
-        axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((result) => {
+        for(let i = 0; i < 10; i++) {
+            axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((result) => {
 
-            this.email = result.data.response;
-            
+                // salvo nella variabile la mail presa dall'api
+                this.email = result.data.response;
 
-        });
+                // la aggiungo al mio array di email
+                this.emails.push(this.email);
+
+            });
+
+           
+        }
+
+        // console.log(this.emails)
 
     },
 
