@@ -9,9 +9,21 @@ createApp({
 
         return {
 
-            
+            // memorizzo in una variabile il mio indirizzo mail
+            email: '',
 
         }
+    },
+
+    mounted() {
+
+        axios.get("https://flynn.boolean.careers/exercises/api/random/mail").then((result) => {
+
+            this.email = result.data.response;
+            
+
+        });
+
     },
 
 
